@@ -1,11 +1,19 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
-const Book = () => (
-  <div className="wrapper">
-    <h2>Head First Javascript</h2>
-    <p>Eric Freeman</p>
-    <button type="submit">Remove Book</button>
-  </div>
-);
+function Book(props) {
+  const { title, author } = props;
+  return (
+    <div className="books-shelf">
+      <h2>{title}</h2>
+      <h4>{author}</h4>
+      <button type="submit">Remove</button>
+    </div>
+  );
+}
+
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+};
 
 export default Book;

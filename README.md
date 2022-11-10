@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Bookstore App: Full Website with React router
+# Bookstore App: Project Set up With React
 
 > This project lays foundations for the Bookstore website. I have created the React part of the app. I have also set up routing using React Router.
 
