@@ -1,3 +1,7 @@
+.wrapper:last-child {
+  margin-top: 1rem;
+}
+
 .App {
   text-align: center;
 }
@@ -32,7 +36,29 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.links {
+  font-size: 18px;
+  display: flex;
+  gap: 1rem;
+  padding-left: 1rem;
+}
+
+.linkitem {
+  text-decoration: none;
 }
