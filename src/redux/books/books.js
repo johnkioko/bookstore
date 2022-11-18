@@ -1,7 +1,7 @@
 const ADD_BOOK = 'bookStore/books/ADD_BOOK';
 const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
 const FETCH_BOOKS = 'bookstore/books/FETCH_BOOKS';
-const urlLink = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/FC6WAWWYKH3uR0KochTL/books';
+const urlLink = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/nz3PkqXhOQSl7jeJbvZu/books';
 
 const initialState = [];
 
@@ -37,8 +37,7 @@ const BookReducer = (state = initialState, action) => {
 };
 
 export const fetchBooksList = () => async (dispatch) => {
-  const booksList = await fetch(`${urlLink}`)
-    .then((response) => response.json());
+  const booksList = await fetch(`${urlLink}`).then((response) => response.json());
   const booksID = Object.keys(booksList);
   const formBooks = [];
   booksID.map((key) => formBooks.push({

@@ -46,19 +46,30 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  list-style: none;
+  text-decoration: none;
 }
 
 .logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 24px;
 }
 
 .links {
-  font-size: 18px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.linkItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
   gap: 1rem;
   padding-left: 1rem;
 }
 
-.linkitem {
-  text-decoration: none;
-}
