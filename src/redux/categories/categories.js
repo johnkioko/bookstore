@@ -9,8 +9,9 @@ export const CheckStatusFunction = () => ({
 const CategoriesReducer = (state = categories, action) => {
   switch (action.type) {
     case CHECK_STATUS:
-      return ['Comming Soon'];
-    default: return state;
+      return ['Under Construction'];
+    default:
+      return state;
   }
 };
 export default CategoriesReducer;
