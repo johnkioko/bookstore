@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
-import { postBook } from "../redux/books/books";
+import { postBook } from '../redux/books/books';
 
 const AddNewBook = () => {
   const [inputValues, setInputValues] = useState({
-    title: "",
-    author: "",
-    id: "",
-    category: "",
+    title: '',
+    author: '',
+    id: '',
+    category: '',
   });
   const dispatch = useDispatch();
-  const [errorMsg, setError] = useState("");
+  const [errorMsg, setError] = useState('');
 
   const submitBookToStore = (e) => {
     e.preventDefault();
@@ -26,21 +26,21 @@ const AddNewBook = () => {
     };
 
     if (newBook.title.trim().length === 0) {
-      setError(" Add a book title please...");
+      setError(' Add a book title please...');
       setInputValues(newBook);
-    } else if (newBook.category === "") {
-      setError(" Select a Book Category please...");
+    } else if (newBook.category === '') {
+      setError(' Select a Book Category please...');
       setInputValues(newBook);
     } else {
-      setError("");
+      setError('');
       dispatch(postBook(newBook));
       setInputValues({
-        title: "",
-        author: "",
-        id: "",
-        category: "",
+        title: '',
+        author: '',
+        id: '',
+        category: '',
       });
-      document.querySelector(".add_book-section").reset();
+      document.querySelector('.add_book-section').reset();
     }
   };
 
