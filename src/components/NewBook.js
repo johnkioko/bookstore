@@ -75,11 +75,9 @@ const AddNewBook = () => {
             <option value="" hidden>
               Category
             </option>
-            <option value="">Category</option>
-            <option value="Service">Service</option>
-            <option value="Fiction">Fiction</option>
-            <option value="Classic">Classic</option>
-            <option value="Economy">Economy</option>
+            <option value="Service">Sciences</option>
+            <option value="Fiction">Mathematics</option>
+            <option value="Classic">History</option>
           </select>
           <button type="submit" onClick={submitBookToStore}>
             Add Book

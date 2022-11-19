@@ -14,5 +14,4 @@ const store = createStore(
   reducer,
   applyMiddleware(logger, thunk),
 );
-
 export default store;

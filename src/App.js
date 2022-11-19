@@ -11,7 +11,7 @@ const App = () => (
       <ul className="d-flex">
         <li><h1><Link to="/">BookStore CMS</Link></h1></li>
         <li><Link to="/">BOOKS</Link></li>
-        <li><Link to="/">CATEGORIES</Link></li>
+        <li><Link to="/Categories">CATEGORIES</Link></li>
       </ul>
       <span className="userProfile-container d-flex">
         <FaUserAlt style={{
@@ -25,7 +25,7 @@ const App = () => (
     </nav>
     <Routes>
       <Route exact path="/" element={<BookPage />} />
-      <Route exact path="/categories" element={<Categories />} />
+      <Route exact path="/Categories" element={<Categories />} />
     </Routes>
   </div>
 );

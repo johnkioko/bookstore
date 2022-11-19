@@ -5,7 +5,7 @@ import BookItem from './Book';
 
 const Books = () => {
   const dispatch = useDispatch();
-  const bookList = useSelector((state) => state.booksReducer);
+  const bookList = useSelector((state) => state.BookReducer);
 
   useEffect(() => {
     dispatch(fetchBooksList());
