@@ -1,37 +1,92 @@
-const ADD_BOOK = 'ADD_BOOK';
-const REMOVE_BOOK = 'REMOVE_BOOK';
-const books = [
-  { id: 1, author: 'Book-1 author', title: 'Book-1' },
-  { id: 2, author: 'Book-2 author', title: 'Book-2' },
-  { id: 3, author: 'Book-3 author', title: 'Book-3' },
-  { id: 4, author: 'Book-4 author ', title: 'Book-4' },
-];
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const AddBookFunction = (NewBook) => ({
+const ADD_BOOK = 'bookStore/books/ADD_BOOK';
+const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
+const FETCH_BOOKS = 'bookstore/books/FETCH_BOOKS';
+const urlLink = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/IEXNcgPY8gfuqg4iq5ZV/books';
+
+const initialState = [];
+
+export const addBook = (payload) => ({
   type: ADD_BOOK,
-  payload: NewBook,
-});
-export const RemoveBookFunction = (id) => ({
-  type: REMOVE_BOOK,
-  id,
+  payload,
 });
 
-const BooksReducer = (state = books, action) => {
+export const removeBook = (payload) => ({
+  type: REMOVE_BOOK,
+  payload,
+});
+
+export const fetchBook = (payload) => ({
+  type: FETCH_BOOKS,
+  payload,
+});
+
+const BookReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOK:
-      return [
-        ...state,
-        {
-          id: Date.now(),
-          title: action.payload.title,
-          author: action.payload.author,
-        },
-      ];
+      return [...state, action.payload];
+
     case REMOVE_BOOK:
-      return state.filter((book) => book.id !== action.id);
+      return state.filter((book) => book.id !== action.payload);
+
+    case FETCH_BOOKS:
+      return action.payload;
+
     default:
       return state;
   }
 };
 
-export default BooksReducer;
+export const fetchBooksList = createAsyncThunk(
+  FETCH_BOOKS,
+  async (payload, { dispatch }) => {
+    const booksList = await fetch(`${urlLink}`).then((response) => response.json());
+    const booksID = Object.keys(booksList);
+    const formBooks = [];
+    booksID.map((key) => formBooks.push({
+      id: key,
+      title: booksList[key][0].title,
+      author: booksList[key][0].author,
+      category: booksList[key][0].category,
+    }));
+    dispatch(fetchBook(formBooks));
+  },
+);
+
+export const postBook = createAsyncThunk(
+  ADD_BOOK,
+  async (newBook, { dispatch }) => {
+    await fetch(`${urlLink}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        item_id: newBook.id,
+        title: newBook.title,
+        author: newBook.author,
+        category: newBook.category,
+      }),
+      headers: {
+        'content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    dispatch(addBook(newBook));
+  },
+);
+
+export const deleteBook = createAsyncThunk(
+  REMOVE_BOOK,
+  async (id, { dispatch }) => {
+    await fetch(`${urlLink}/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        item_id: id,
+      }),
+      headers: {
+        'content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    dispatch(removeBook(id));
+  },
+);
+
+export default BookReducer;
