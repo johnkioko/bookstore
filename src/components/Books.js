@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooksList } from '../redux/books/books';
-import Book from './Book';
+import BookItem from './Book';
 
 const Books = () => {
   const dispatch = useDispatch();
-  const bookList = useSelector((state) => state.booksReducer);
+  const bookList = useSelector((state) => state.BookReducer);
 
   useEffect(() => {
     dispatch(fetchBooksList());
   }, [dispatch]);
 
   return (
-    <ul className="books-list">
+    <ul className="booksList_section">
       {bookList
-        ? bookList.map((book) => <Book key={book.id} book={book} />)
+        ? bookList.map((book) => <BookItem key={book.id} book={book} />)
         : 'Loading...'}
     </ul>
   );
